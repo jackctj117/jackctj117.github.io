@@ -50,16 +50,16 @@ function updateWeatherIcon(tempF) {
     const weatherIcon = document.getElementById("weatherIcon");
 
     if (tempF <= -200 || tempF >= 200) {
-        weatherIcon.src = "images/dead.png";
+        weatherIcon.src = "../images/dead.png";
     } else if (tempF <= 32) {
-        weatherIcon.src = "images/cold.png";
+        weatherIcon.src = "../images/cold.png";
     } else if (tempF >= 90) {
-        weatherIcon.src = "images/hot.png";
+        weatherIcon.src = "../images/hot.png";
     } else {
-        weatherIcon.src = "images/cool.png";
+        weatherIcon.src = "../images/cool.png";
     }
 
     if (isNaN(tempF)) {
-        weatherIcon.src = "images/C-F.png";
+        weatherIcon.src = "../images/C-F.png";
     }
 }
