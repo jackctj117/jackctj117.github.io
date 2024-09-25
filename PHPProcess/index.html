@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Gathering Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; }
+        label { display: block; margin-top: 10px; }
+        input, select { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Data Gathering Form</h1>
+    <form action="process_form.php" method="POST">
+        <label>Checkbox Options:</label>
+        <input type="checkbox" name="checkbox[]" value="option1"> Option 1
+        <input type="checkbox" name="checkbox[]" value="option2"> Option 2
+        <input type="checkbox" name="checkbox[]" value="option3"> Option 3
+
+        <label>Radio Options:</label>
+        <input type="radio" name="radio" value="choice1"> Choice 1
+        <input type="radio" name="radio" value="choice2"> Choice 2
+        <input type="radio" name="radio" value="choice3"> Choice 3
+
+        <label for="select_one">Select One Option:</label>
+        <select name="select_one" id="select_one">
+            <option value="item1">Item 1</option>
+            <option value="item2">Item 2</option>
+            <option value="item3">Item 3</option>
+        </select>
+
+        <label for="select_multiple">Select Multiple Options:</label>
+        <select name="select_multiple[]" id="select_multiple" multiple>
+            <option value="multi1">Multi 1</option>
+            <option value="multi2">Multi 2</option>
+            <option value="multi3">Multi 3</option>
+        </select>
+
+        <label for="text_input">Text Input:</label>
+        <input type="text" name="text_input" id="text_input">
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
