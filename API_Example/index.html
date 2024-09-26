@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Examples</title>
+    </head>
+  <body>
+    <h1>API Examples</h1>
+    <hr>
+    <h2>JavaScript Navigator API</h2>
+    <h3>navigator.geolocation <a href="https://www.w3schools.com/js/tryit.asp?filename=tryjs_api_geo_coordinates">[?]</a></h3>
+    <p id="location">Your Location:</p>
+    <button onclick="getLocation()">Get Location</button>
+    <h3>navigator.onLine <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine">[?]</a></h3>
+    <p>This browser is <span id="isonline">--</span></p>
+    <hr>
+    <h2>Third Party APIs</h2>
+    <h3>Google Fonts <a href="https://developers.google.com/fonts/docs/getting_started">[?]</a></h3>
+    <p>A free Google API to bring <span class="coolfont">ecclectic fonts</span> to your website.</p>  
+    <h3>Open Weather <a href="https://openweathermap.org/">[?]</a></h3>
+    <p>A free API to get JSON data with weather conditions from around the world</p>
+    <p>Right now in Bozeman: Temp: <span id="bozweather"></span></p>
+    <hr>
+
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+    <!-- have a button POST a click via AJAX -->
+    <button hx-post="/clicked" hx-swap="outerHTML">
+      Click Me
+    </button>
+
+    <script>
+      const loc = document.getElementById("location");
+      function getLocation() {
+        try {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } catch {
+          loc.innerHTML = err;
+        }
+      }
+      function showPosition(position) {
+        loc.innerHTML +=
+          "<br>" +
+          "Latitude: " +
+          position.coords.latitude +
+          "<br>" +
+          "Longitude: " +
+          position.coords.longitude;
+      }
+      isonline.innerHTML = amIOnline();
+      function amIOnline() {
+        if (navigator.onLine) {
+          console.log("online");
+          return "yes"
+        } else {
+          console.log("offline");
+          return "no"
+        }
+      }
+
+      showTemp(59715);
+      function showTemp(zip){
+        let endpoint = "https://api.openweathermap.org/data/2.5/weather";
+        let apiKey = "a59b293b4212a8e2b8ee618786cc88f9";
+        let queryString = "zip=" + zip + "&units=imerial&appid=" + apiKey;
+        let url = endpoint + "?" + queryString;
+
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", responseHandler);
+        xhr.respoonseType = "json";
+        xhr.open("GET", url);
+        xhr.send();
+      }
+
+      function responseHandler(){
+        bozweather.innerHTML = this.response.main.temp + "deg;F";
+      }
+
+    </script>
+  </body>
+</html>
